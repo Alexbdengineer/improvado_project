@@ -49,13 +49,15 @@ This project is an API to fetch, store, and retrieve weather data from OpenWeath
 
 5. Configure the app:
 
-Create a file config.py with your actual values and API keys. A sample_config.py file is included for your reference.
+Create a file config.py with your actual values and API keys. A sample_config.py file is included for your reference. Once the config.py file is updated, run the database.py script.
+- `python3 database.py`
 
 ## Running the application.
 
 The application requires three shells to run the main app, the Celery worker, and the Celery scheduler:
 
 1. Start the main app (Shell 1):
+
 - `source env/bin/activate`
 - `uvicorn main:app --host 0.0.0.0 --port 8000`
 
