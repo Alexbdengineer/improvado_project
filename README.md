@@ -19,54 +19,55 @@ This project is an API to fetch, store, and retrieve weather data from OpenWeath
 
 1. Clone the repository:
 
-git clone https://github.com/Alexbdengineer/improvado_project.git
+`git clone https://github.com/Alexbdengineer/improvado_project.git`
 
 2. Create and activate a virtual environment:
 
-sudo apt update
-sudo apt install python3.11-venv
-source env/bin/activate
+- `sudo apt update`
+- `sudo apt install python3.11-venv`
+- `python3 -m venv env`
+- `source env/bin/activate`
 
 3. Install the required packages:
 
-pip install -r requirements.txt
-sudo apt update
-sudo apt-get install rabbitmq-server
-sudo systemctl start rabbitmq-server
+- `pip install -r requirements.txt`
+- `sudo apt update`
+- `sudo apt-get install rabbitmq-server`
+- `sudo systemctl start rabbitmq-server`
 
 4. Setup the postgresql database:
 
-sudo apt update
-sudo apt-get install postgresql postgresql-contrib
-sudo service postgresql start
-sudo su - postgres
-psql
-CREATE USER your_postgres_user WITH PASSWORD 'your_postgres_password';
-CREATE DATABASE your_postgres_db WITH OWNER your_postgres_user;
-exit
-exit
+- `sudo apt update`
+- `sudo apt-get install postgresql postgresql-contrib`
+- `sudo service postgresql start`
+- `sudo su - postgres`
+- `psql`
+- `CREATE USER your_postgres_user WITH PASSWORD 'your_postgres_password';`
+- `CREATE DATABASE your_postgres_db WITH OWNER your_postgres_user;`
+- `exit`
+- `exit`
 
 5. Configure the app:
 
-Replace the values in config.py with your actual values and API keys. A sample_config.py file is included for your reference.
+Create a file config.py with your actual values and API keys. A sample_config.py file is included for your reference.
 
 ## Running the application.
 
 The application requires three shells to run the main app, the Celery worker, and the Celery scheduler:
 
 1. Start the main app (Shell 1):
-source env/bin/activate
-uvicorn main:app --host 0.0.0.0 --port 8000
+- `source env/bin/activate`
+- `uvicorn main:app --host 0.0.0.0 --port 8000`
 
 2. Celery worker (Shell 2):
-source env/bin/activate
-celery -A celery_app:app worker --loglevel=info --concurrency=1
+- `source env/bin/activate`
+- `celery -A celery_app:app worker --loglevel=info --concurrency=1`
 
 **Note**: This has not been tested with concurrency higher than 1 as of this version.
 
 3. Celery scheduler (Shell 3):
-source env/bin/activate
-celery -A celery_app beat --loglevel=info
+- `source env/bin/activate`
+- `celery -A celery_app beat --loglevel=info`
 
 
 ## API Endpoints.
@@ -83,7 +84,7 @@ Endpoint: /api/v1/cities/
 
 Example curl:
 
-curl -X GET "http://localhost:8000/api/v1/cities/"
+`curl -X GET "http://localhost:8000/api/v1/cities/"`
 
 2. Add a new city with its name.
 
@@ -95,7 +96,7 @@ Request body: {"name": "City name"}
 
 Example curl:
 
-curl -X POST "http://localhost:8000/api/v1/cities/" -H "Content-Type: application/json" -d '{"name": "Cancun"}'
+`curl -X POST "http://localhost:8000/api/v1/cities/" -H "Content-Type: application/json" -d '{"name": "Cancun"}'`
 
 3. Get city Weather.
 
@@ -105,7 +106,7 @@ Endpoint: /api/v1/cities/{city_name}/
 
 Example curl:
 
-curl -X GET "http://localhost:8000/api/v1/cities/{"Cancun"}/"
+`curl -X GET "http://localhost:8000/api/v1/cities/{"Cancun"}/"`
 
 4. Get city weather specifying time.
 
@@ -115,7 +116,7 @@ Endpoint: /api/v1/cities/{city_name}/time/
 
 Example curl:
 
-curl -X GET "http://localhost:8000/api/v1/cities/{"Cancun"}/?weather_time=2023-04-19T00:30:01"
+`curl -X GET "http://localhost:8000/api/v1/cities/{"Cancun"}/?weather_time=2023-04-19T00:30:01"`
 
 
 
