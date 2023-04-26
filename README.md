@@ -4,7 +4,6 @@
 Author: Alex Escalante Sanchez
 - alexandurs@gmail.com 
 
-https://www.linkedin.com/in/alex-escalante-sanchez-1679a8141/
 
 This project is an API to fetch, store, and retrieve weather data from OpenWeatherMap and Yandex for multiple cities. The API is built using FastAPI, and Celery is used for scheduled weather updating tasks. The data is stored in a PostgreSQL database. This project is for demo purposes and is not intended for production use.
 
